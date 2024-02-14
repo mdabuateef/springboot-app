@@ -1,0 +1,17 @@
+version: 0.2  
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | sudo docker login --username AWS --password-stdin 185633157927.dkr.ecr.ap-south-1.amazonaws.com
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t varthana1 .
+  post_build:
+    commands:
+      - echo Pushing Docker image to Amazon ECR...
+      - docker tag varthana1:latest 185633157927.dkr.ecr.ap-south-1.amazonaws.com/varthana:latest
+      - docker push 185633157927.dkr.ecr.ap-south-1.amazonaws.com/varthana:latest
+
