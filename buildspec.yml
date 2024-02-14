@@ -1,5 +1,8 @@
 version: 0.2  
-
+env: 
+  secrets-manager
+    username: testing/sonar:username
+    token: testing/sonar:token
 phases:
   pre_build:
     commands:
@@ -8,6 +11,8 @@ phases:
   build:
     commands:
       - echo Building Docker image...
+      - docker login -u $username -p $token
+      - echo login success
       - docker build -t varthana1 .
   post_build:
     commands:
