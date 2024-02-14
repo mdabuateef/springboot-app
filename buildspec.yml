@@ -1,6 +1,6 @@
 version: 0.2  
 env: 
-  secrets-manager
+  secrets-manager:
     username: testing/sonar:username
     token: testing/sonar:token
 phases:
