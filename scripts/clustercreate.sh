@@ -1,1 +1,1 @@
-eksctl create cluster --name spring --version 1.29 --region ap-south-1 --nodegroup two-springs --node-type t2.large --managed
+eksctl create cluster --name spring --version 1.29 --region ap-south-1 --nodegroup-name two-springs --node-type t2.large --managed
