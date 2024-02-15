@@ -7,9 +7,9 @@ phases:
   pre_build:
     commands:
       - echo installing dependencies
-      - ./scripts/awscli.sh
-      - ./scripts/eksctl.sh
-      - ./scripts/kubectl.sh
+      - sudo ./scripts/awscli.sh
+      - sudo ./scripts/eksctl.sh
+      - sudo ./scripts/kubectl.sh
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 185633157927.dkr.ecr.ap-south-1.amazonaws.com
   build:
@@ -23,5 +23,5 @@ phases:
       - echo Pushing Docker image to Amazon ECR...
       - docker tag varthana1:latest 185633157927.dkr.ecr.ap-south-1.amazonaws.com/varthana:latest
       - docker push 185633157927.dkr.ecr.ap-south-1.amazonaws.com/varthana:latest
-      - ./scripts/clustercreate.sh    
+      - sudo ./scripts/clustercreate.sh    
 
