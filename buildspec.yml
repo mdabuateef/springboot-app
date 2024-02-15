@@ -7,9 +7,9 @@ phases:
   pre_build:
     commands:
       - echo installing dependencies
-      - chmod +x /scripts/awscli.sh
-      - chmod +x /scripts/eksctl.sh
-      - chmod +x /scripts/kubectl.sh
+      - chmod +x ./scripts/awscli.sh
+      - chmod +x ./scripts/eksctl.sh
+      - chmod +x ./scripts/kubectl.sh
       - ./scripts/awscli.sh
       - ./scripts/eksctl.sh
       - ./scripts/kubectl.sh
@@ -26,6 +26,6 @@ phases:
       - echo Pushing Docker image to Amazon ECR...
       - docker tag varthana1:latest 185633157927.dkr.ecr.ap-south-1.amazonaws.com/varthana:latest
       - docker push 185633157927.dkr.ecr.ap-south-1.amazonaws.com/varthana:latest
-      - chmod +x /scripts/clustercreate.sh
+      - chmod +x ./scripts/clustercreate.sh
       - ./scripts/clustercreate.sh    
 
