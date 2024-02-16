@@ -26,11 +26,22 @@ phases:
       - echo Pushing Docker image to Amazon ECR...
       - docker tag varthana1:latest 185633157927.dkr.ecr.ap-south-1.amazonaws.com/varthana:latest
       - docker push 185633157927.dkr.ecr.ap-south-1.amazonaws.com/varthana:latest
-      - chmod +x ./scripts/clustercreate.sh
-      - ./scripts/clustercreate.sh    
+      - echo updating kubeconfig 
+      - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
+      - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
+      - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
+      - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
+      - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
+      # Setup kubectl with our EKS Cluster              
+      - echo "Update Kube Config"      
+      - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
+      # Apply changes to our Application using kubectl
+      - echo "Apply changes to kube manifests"            
+      - kubectl apply -f kube-manifests/
+      - aws eks update-kubeconfig --name springs --region ap-south-1    
       - kubectl apply -f springboot.yaml
-      - sleep 10
       - chmod +x ./scripts/helm.sh
+      - chmod +x ./scripts/aws-auth.sh
       - ./scripts/helm.sh
 
 
