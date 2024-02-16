@@ -29,4 +29,8 @@ phases:
       - chmod +x ./scripts/clustercreate.sh
       - ./scripts/clustercreate.sh    
       - kubectl apply -f springboot.yaml
+      - sleep 10
+      - chmod +x ./scripts/helm.sh
+      - ./scripts/helm.sh
+
 
