@@ -5,7 +5,7 @@ kubectl get configmap aws-auth -o yaml -n kube-system
 export ACCOUNT_ID=185633157927
 
 # Set ROLE value
-ROLE="    - rolearn: arn:aws:iam::$ACCOUNT_ID:role/codebuild-varthana-service-role\n      username: build\n      groups:\n        - system:masters"
+ROLE="    - rolearn: arn:aws:iam::$ACCOUNT_ID:role/EksCodeBuildKubectlRole\n      username: build\n      groups:\n        - system:masters"
 
 # Get current aws-auth configMap data and attach new role info to it
 kubectl get -n kube-system configmap/aws-auth -o yaml | awk "/mapRoles: \|/{print;print \"$ROLE\";next}1" > /tmp/aws-auth-patch.yml
