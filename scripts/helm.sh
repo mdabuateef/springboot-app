@@ -15,4 +15,4 @@ helm version
 
 helm upgrade -i kubecost oci://public.ecr.aws/kubecost/cost-analyzer --version="1.104.4" --namespace kubecost --create-namespace -f https://raw.githubusercontent.com/kubecost/cost-analyzer-helm-chart/develop/cost-analyzer/values-eks-cost-monitoring.yaml --set prometheus.configmapReload.prometheus.enabled="false"
  
- kubectl patch svc kubecost-cost-analyzer -n kubecost -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc kubecost-cost-analyzer -n kubecost -p '{"spec": {"type": "LoadBalancer"}}'
