@@ -1,4 +1,4 @@
-eksctl utils associate-iam-oidc-provider --cluster spring --approve
+#eksctl utils associate-iam-oidc-provider --cluster spring --approve
 
 eksctl create iamserviceaccount --name ebs-csi-controller-sa --namespace kube-system --cluster spring --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy --approve --role-name AmazonEKS_EBS_CSI_DriverRole
 
