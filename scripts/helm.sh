@@ -6,9 +6,9 @@ SERVICE_ACCOUNT_ROLE_ARN=$(aws iam get-role --role-name AmazonEKS_EBS_CSI_Driver
 
 eksctl create addon --name aws-ebs-csi-driver --cluster spring --service-account-role-arn eksctl create addon --name aws-ebs-csi-driver --cluster spring --service-account-role-arn "$SERVICE_ACCOUNT_ROLE_ARN" --force
 
-eksctl create addon --name vpc-cni --cluster spring --service-account-role-arn "$SERVICE_ACCOUNT_ROLE_ARN" --force
+#eksctl create addon --name vpc-cni --cluster spring --service-account-role-arn "$SERVICE_ACCOUNT_ROLE_ARN" --force
 
-eksctl create addon --name kube-proxy --cluster spring --service-account-role-arn "$SERVICE_ACCOUNT_ROLE_ARN" --force
+#eksctl create addon --name kube-proxy --cluster spring --service-account-role-arn "$SERVICE_ACCOUNT_ROLE_ARN" --force
 
 wget https://get.helm.sh/helm-v3.9.3-linux-amd64.tar.gz
 tar xvf helm-v3.9.3-linux-amd64.tar.gz
